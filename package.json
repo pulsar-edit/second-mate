@@ -4,7 +4,7 @@
   "description": "TextMate helpers",
   "main": "./lib/first-mate.js",
   "scripts": {
-    "test": "grunt test",
+    "test": "node node_modules/jasmine-focused/bin/jasmine-focused --coffee --captureExceptions spec",
     "prepare": "grunt prepublish",
     "benchmark": "node_modules/.bin/coffee benchmark/benchmark.coffee"
   },

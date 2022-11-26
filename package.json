@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jasmine-focused --coffee --captureExceptions spec",
     "benchmark": "node_modules/.bin/coffee benchmark/benchmark.coffee",
-    "parse": "pegjs -o ./lib/scope-selector-parser.js ./src/scope-selector-parser.pegjs"
+    "parse": "pegjs -o ./lib/scope-selector-parser.js ./src/scope-selector-parser.pegjs",
+    "docs": "grunt atomdoc"
   },
   "repository": {
     "type": "git",

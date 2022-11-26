@@ -28,11 +28,10 @@
     "underscore-plus": "^1"
   },
   "devDependencies": {
-    "grunt": "^1.5.3",
-    "grunt-atomdoc": "^1.0.0",
+    "grunt": "^0.4.0",
+    "grunt-atomdoc": "^1.0.1",
     "grunt-cli": "^1.4.3",
     "jasmine-focused": "^1",
-    "pegjs": "^0.10.0",
-    "rimraf": "^3.0.2"
+    "pegjs": "^0.10.0"
   }
 }

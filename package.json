@@ -5,7 +5,8 @@
   "main": "./lib/first-mate.js",
   "scripts": {
     "test": "jasmine-focused --coffee --captureExceptions spec",
-    "benchmark": "node_modules/.bin/coffee benchmark/benchmark.coffee"
+    "benchmark": "node_modules/.bin/coffee benchmark/benchmark.coffee",
+    "parse": "pegjs -o ./lib/scope-selector-parser.js ./src/scope-selector-parser.pegjs"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "grunt-peg": "~1.1.0",
     "grunt-shell": "~0.2.2",
     "jasmine-focused": "^1",
+    "pegjs": "^0.10.0",
     "rimraf": "~2.1.4"
   }
 }

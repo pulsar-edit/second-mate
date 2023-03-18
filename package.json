@@ -4,7 +4,7 @@
   "description": "TextMate helpers",
   "main": "./lib/first-mate.js",
   "scripts": {
-    "test": "jasmine-focused --coffee --captureExceptions spec",
+    "test": "mocha spec",
     "benchmark": "node_modules/.bin/coffee benchmark/benchmark.coffee",
     "parse": "pegjs -o ./lib/scope-selector-parser.js ./src/scope-selector-parser.pegjs",
     "docs": "grunt atomdoc"

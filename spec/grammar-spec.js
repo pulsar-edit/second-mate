@@ -555,10 +555,8 @@ first
         grammar = registry.grammarForScopeName('source.c');
       });
 
-      it.only("correctly parses a method. (regression)", () => {
+      it("correctly parses a method. (regression)", () => {
         const {line, tags, ruleStack} = grammar.tokenizeLine("if(1){m()}");
-        console.log("LINE", line)
-        console.log("TAGS", tags)
         const tokens = registry.decodeTokens(line, tags);
         expect(tokens[5]).to.eql({value: "m", scopes: ["source.c", "meta.block.c", "meta.function-call.c", "support.function.any-method.c"]});
       });
@@ -596,7 +594,7 @@ first
     });
 
     describe("when a line has more tokens than `maxTokensPerLine`", () => {
-      xit("creates a final token with the remaining text and resets the ruleStack to match the begining of the line", () => {
+      it("creates a final token with the remaining text and resets the ruleStack to match the begining of the line", () => {
         grammar = registry.grammarForScopeName('source.js');
         const originalRuleStack = grammar.tokenizeLine('').ruleStack;
         chai.spy.on(grammar, 'getMaxTokensPerLine', () => 5);
@@ -606,7 +604,7 @@ first
         expect(tokens.length).to.eql(6);
         expect(tokens[5].value).to.eql("[a-z]/;");
         expect(ruleStack).to.eql(originalRuleStack);
-        expect(ruleStack).not.to.eql(originalRuleStack);
+        expect(ruleStack).not.to.eq(originalRuleStack);
         expect(scopes.length).to.eql(0);
       });
     });

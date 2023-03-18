@@ -684,7 +684,7 @@ first
 
         // But now it has
         loadGrammarSync('sql.json');
-        expect(calls).to.be.eql(1)
+        expect(calls).to.eql(1);
         ({line, tags} = grammar.tokenizeLine('"SELECT something"'));
         tokens = registry.decodeTokens(line, tags);
 
@@ -1209,7 +1209,7 @@ public void test() {
     it("adds a pattern for that grammar", () => {
       loadGrammarSync("injection-with-include.cson");
       grammar = registry.grammarForScopeName("test.injections");
-      expect(grammar).not.to.be.eql(null);
+      expect(grammar).not.to.eql(null);
       expect(grammar.includedGrammarScopes).to.eql(['text.plain']);
     });
   });
@@ -1219,13 +1219,13 @@ public void test() {
       grammar = new Grammar(registry, {scopeName: 'test-activate'});
 
       grammar.deactivate();
-      expect(registry.grammarForScopeName('test-activate')).to.be.eql(undefined);
+      expect(registry.grammarForScopeName('test-activate')).to.eql(undefined);
 
       grammar.activate();
       expect(registry.grammarForScopeName('test-activate')).to.eql(grammar);
 
       grammar.deactivate();
-      expect(registry.grammarForScopeName('test-activate')).to.be.eql(undefined);
+      expect(registry.grammarForScopeName('test-activate')).to.eql(undefined);
     });
   });
 });

@@ -1,36 +1,39 @@
-# First Mate
-[![CI](https://github.com/atom/first-mate/actions/workflows/ci.yml/badge.svg)](https://github.com/atom/first-mate/actions/workflows/ci.yml)
+# Second Mate
+[![CI](https://github.com/pulsar-edit/second-mate/actions/workflows/ci.yml/badge.svg)](https://github.com/pulsar-edit/second-mate/actions/workflows/ci.yml)
 
 TextMate helpers
 
 ## Installing
 
 ```sh
-npm install first-mate
+npm install second-mate
 ```
 
 ## Using
 
 ### ScopeSelector
 
-```coffeescript
-{ScopeSelector} = require 'first-mate'
-selector = new ScopeSelector('a | b')
-selector.matches(['c']) # false
-selector.matches(['a']) # true
+```javascript
+const {ScopeSelector, ready} = require('second-mate')
+await ready;
+const selector = new ScopeSelector('a | b')
+selector.matches(['c']) // => false
+selector.matches(['a']) // => true
 ```
 
 ### GrammarRegistry
 
-```coffeescript
-{GrammarRegistry} = require 'first-mate'
-registry = new GrammarRegistry()
-grammar = registry.loadGrammarSync('./spec/fixtures/javascript.json')
-{line, tags} = grammar.tokenizeLine('var offset = 3;')
-# convert compact tags representation into convenient, space-inefficient tokens
-tokens = registry.decodeTokens(line, tags)
-for {value, scopes} in tokens
-  console.log("Token text: '#{value}' with scopes: #{scopes}")
+```js
+const {GrammarRegistry, ready} = require('first-mate');
+await ready;
+const registry = new GrammarRegistry();
+const grammar = registry.loadGrammarSync('./spec/fixtures/javascript.json');
+const {line, tags} = grammar.tokenizeLine('var offset = 3;');
+// convert compact tags representation into convenient, space-inefficient tokens
+const tokens = registry.decodeTokens(line, tags);
+for (let {value, scopes} of Array.from(tokens)) {
+  console.log(`Token text: '${value}' with scopes: ${scopes}`);
+}
 ```
 
 #### loadGrammar(grammarPath, callback)
@@ -118,6 +121,4 @@ lines and a `tags` key, pointing to an array of tags arrays described above.
   * Clone the repository
   * Run `npm install`
   * Run `npm test` to run the specs
-  * Run `npm run benchmark` to benchmark fully tokenizing jQuery 2.0.3 and
-    the CSS for Twitter Bootstrap 3.1.1
   * If you make changes to `./src/scope-selector-parser.pegjs` ensure to run `npm run parse` to generate the JS form of PegJS.

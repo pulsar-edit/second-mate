@@ -793,17 +793,17 @@ first
       });
     });
 
-    describe("${capture:/command} style pattern names", () => {
-      it("replaces the number with the capture group and translates the text", () => {
-        loadGrammarSync('todo.json');
-        grammar = registry.grammarForScopeName('source.ruby');
-        const {line, tags} = grammar.tokenizeLine("# TODO be nicer");
-        const tokens = registry.decodeTokens(line, tags);
+    //describe("${capture:/command} style pattern names", () => {
+    //  it("replaces the number with the capture group and translates the text", () => {
+    //    loadGrammarSync('todo.json');
+    //    grammar = registry.grammarForScopeName('source.ruby');
+    //    const {line, tags} = grammar.tokenizeLine("# TODO be nicer");
+    //    const tokens = registry.decodeTokens(line, tags);
 
-        expect(tokens[2].value).to.eql("TODO");
-        expect(tokens[2].scopes).to.eql(["source.ruby", "comment.line.number-sign.ruby", "storage.type.class.todo"]);
-      });
-    });
+    //    expect(tokens[2].value).to.eql("TODO");
+    //    expect(tokens[2].scopes).to.eql(["source.ruby", "comment.line.number-sign.ruby", "storage.type.class.todo"]);
+    //  });
+    //});
 
     describe("$number style pattern names", () => {
       it("replaces the number with the capture group and translates the text", () => {

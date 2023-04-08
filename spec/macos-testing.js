@@ -11,7 +11,7 @@ describe("These are failing on MacOS", () => {
 
     const firstLineMatch = "-\*- C\+\+ -\*-";
 
-    let string = new oniguruma.OnigString(firstLineMatch);
+    let string = new oniguruma.oniguruma.OnigString(firstLineMatch);
 
     console.log(string); // I don't actually know the proper handling, this is me attempting to figure out what's going on lol
   });

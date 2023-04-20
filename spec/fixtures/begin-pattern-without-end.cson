@@ -1,0 +1,35 @@
+'name': 'interminable-grammar'
+'scopeName': 'source.no-end'
+
+# This grammar should loop forever if the line contains an `a`
+'patterns': [
+  {
+    'name': 'start'
+    'begin': '^'
+    'patterns': [
+      {
+        'name': 'invalid.foo'
+        'match': "aaa"
+      }
+      { 'include': '#others'}
+    ]
+  }
+]
+
+'repository': {
+  'others': {
+    'patterns': [
+      {
+        'name': 'start'
+        'begin': '^'
+        'patterns': [
+          {
+            'name': 'invalid.foo'
+            'match': "aaa"
+          }
+          { 'include': '#others'}
+        ]
+      }
+    ]
+  }
+}

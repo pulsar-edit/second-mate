@@ -29,11 +29,11 @@ describe("GrammarRegistry", () => {
       registry = new GrammarRegistry()
       expect(() => registry.loadGrammarSync(grammarPath)).to.throw()
 
-      let arg
-      const callback = (a) => { arg = a }
-      registry.loadGrammar(grammarPath, callback)
-      await waitFor(() => arg).to.be.ok
-      expect(arg.message.length).to.be.above(0)
+      let resolve
+      let called = new Promise(r => resolve = r)
+      registry.loadGrammar(grammarPath, resolve)
+      let err = await called
+      expect(err.message.length).to.be.above(0)
     })
   })
 

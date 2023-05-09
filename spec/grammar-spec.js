@@ -6,6 +6,7 @@ const _ = require('underscore-plus');
 const fs = require('fs-plus');
 const GrammarRegistry = require('../lib/grammar-registry');
 const Grammar = require('../lib/grammar');
+const { oniguruma } = require('../lib/onig');
 
 const { waitFor } = require('./spec-helper')
 
@@ -32,6 +33,7 @@ describe("Grammar tokenization", () => {
   afterEach(() => {
     chai.spy.restore(console, 'error')
     chai.spy.restore(grammar, 'getMaxTokensPerLine')
+    chai.spy.restore(oniguruma, 'OnigScanner')
   })
 
   describe("when the registry is empty", () => {
@@ -580,6 +582,21 @@ first
         expect(tokens[1].value).to.eql("bc");
         expect(scopes).to.eql([registry.startIdForScope(grammar.scopeName)]);
         expect(console.error).to.have.been.called;
+      });
+    });
+
+    describe("when a grammar has a begin rule without an end rule", () => {
+      it("does not result in a pattern mismatch", () => {
+        let OnigScanner = oniguruma.OnigScanner;
+        let calledPatterns = null;
+        let spied = chai.spy.on(oniguruma, 'OnigScanner', (patterns) => {
+          calledPatterns = patterns;
+          return new OnigScanner(patterns);
+        });
+        grammar = loadGrammarSync('begin-pattern-without-end.cson');
+        grammar.tokenizeLine("abc");
+        expect(spied).to.have.been.called;
+        expect(calledPatterns).to.have.lengthOf(3);
       });
     });
 
